@@ -15,8 +15,9 @@ const Header = () => {
 
 
   return (
-    <header className="bg-gray-800 py-4">
-    <nav className="container mx-auto flex items-center justify-between">
+    
+    <header className="bg-gray-800 py-4 mx-auto" style={{ width: '90%'}} >
+    <nav className="container mx-auto flex items-center justify-between" >
 
      <Link to="/" className="flex items-center text-white">
      <img src="/src/images/flipcartIcon.jpg" alt="logo" className="h-8 " />
