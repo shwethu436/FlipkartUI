@@ -4,14 +4,17 @@ import { Link } from 'react-router-dom'
 import '@fortawesome/fontawesome-free/css/all.css';
 
 const Header = () => {
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
+    const toggleDropdown = () => {
+      setIsDropdownOpen(!isDropdownOpen);
+    };
+  
+    const handleLoginClick = () => {
+      setIsDropdownOpen(false); // Close the dropdown when login button is clicked
+      window.location.href = "/login"; // Redirect to login page
+    };
 
-    // State to manage dropdown visibility
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  // Function to toggle dropdown visibility
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
 
 
   return (
@@ -32,17 +35,16 @@ const Header = () => {
 <div className="flex items-center space-x-4 text-white">
           {/* Login dropdown */}
           <div className="relative">
-            <button onClick={toggleDropdown} className="hover:text-gray-300 flex items-center">
-              <i className="fas fa-user"></i>Login
-              <i className="fas fa-caret-down ml-1"></i>
-            </button>
-            {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 py-2 w-48 bg-white border rounded-lg shadow-xl z-10">
-                
-                <Link to="/signup" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">New Customer?Signup</Link>
-              </div>
-            )}
-          </div>
+      <button onClick={handleLoginClick} onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown} className="hover:text-gray-300 flex items-center">
+        <i className="fas fa-user"></i>Login
+        <i className="fas fa-caret-down ml-1"></i>
+      </button>
+      {isDropdownOpen && (
+        <div className="absolute right-0 mt-2 py-2 w-48 bg-white border rounded-lg shadow-xl z-10" onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
+          <Link to="/signup" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">New Customer? Signup</Link>
+        </div>
+      )}
+    </div>
 
 
 {/* Become a seller option */}
