@@ -20,14 +20,15 @@ const navs =[
     // ----------------------- BEFORE AUTH --------------------------- 
   {
     path: "/seller/register",
-    element: <Register />,
+    element: <Register role={"SELLER"} />,
+    role:"ALL",
     requireAuth: false,
     isVisibleAfterAuth: false,
-    role: "ALL",
+    
   },
   {
     path: "/customer/register",
-    element: <Register />,
+    element: <Register role={"CUSTOMER"} />,
     requireAuth: false,
     isVisibleAfterAuth: false,
     role: "ALL",

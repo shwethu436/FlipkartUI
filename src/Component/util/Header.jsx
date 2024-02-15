@@ -4,19 +4,13 @@ import { Link } from 'react-router-dom'
 import '@fortawesome/fontawesome-free/css/all.css';
 
 const Header = () => {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isLoginDropdownOpen, setIsLoginDropdownOpen] = useState(false);
   
-    const toggleDropdown = () => {
-      setIsDropdownOpen(!isDropdownOpen);
-    };
-  
-    const handleLoginClick = () => {
-      setIsDropdownOpen(false); // Close the dropdown when login button is clicked
-      window.location.href = "/login"; // Redirect to login page
-    };
 
-
-
+  const toggleLoginDropdown = () => {
+    setIsLoginDropdownOpen(!isLoginDropdownOpen);
+   
+  };
   return (
     
     <header className="bg-gray-800 py-4 mx-auto" style={{ width: '90%'}} >
@@ -31,20 +25,37 @@ const Header = () => {
 <input type="text" placeholder='search for products,etc....' className="px-3 py-1 rounded-md border border-gray-500"/>
 </div>
 
-{/* Link block */}
-<div className="flex items-center space-x-4 text-white">
+<div className="flex items-center space-x-4 text-white ">
+
           {/* Login dropdown */}
-          <div className="relative">
-      <button onClick={handleLoginClick} onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown} className="hover:text-gray-300 flex items-center">
-        <i className="fas fa-user"></i>Login
-        <i className="fas fa-caret-down ml-1"></i>
-      </button>
-      {isDropdownOpen && (
-        <div className="absolute right-0 mt-2 py-2 w-48 bg-white border rounded-lg shadow-xl z-10" onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
-          <Link to="/signup" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">New Customer? Signup</Link>
-        </div>
-      )}
-    </div>
+          <div className="relative p-3">
+            <button onClick={toggleLoginDropdown} className="hover:text-gray-300 flex items-center">
+            <Link to="/login" className="hover:text-gray-300 ">
+              <i className="fas fa-user p-2"></i>Login
+              <i className="fas fa-caret-down ml-1"></i>
+            </Link>
+            </button>
+
+            {isLoginDropdownOpen && (
+              <div className="absolute right-0 mt-2 py-2 w-64 bg-white border rounded-lg shadow-xl z-10 p-2">
+               <Link to="/customer/register" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+               <span>New Customer? </span>
+               <span className="ml-4"></span>
+              <button className="text-white bg-blue-500 hover:bg-blue-600 px-2 py-1 rounded-md">Signup</button>
+               </Link>
+               <Link to="/profile" className=" text-gray-800 hover:bg-gray-200 flex items-center">
+                  <i className="fas fa-user-circle mr-2"></i>My Profile
+                </Link>
+                <Link to="/orders" className=" text-gray-800 hover:bg-gray-200 flex items-center">
+                  <i className="fas fa-shopping-bag mr-2"></i>Orders
+                </Link>
+                <Link to="/wishlist" className=" text-gray-800 hover:bg-gray-200 flex items-center">
+                  <i className="fas fa-heart mr-2"></i>Wishlist
+                </Link>
+              </div>
+            )}
+          </div>
+
 
 
 {/* Become a seller option */}
