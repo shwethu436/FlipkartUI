@@ -7,8 +7,8 @@ import navs from './Component/Route/Navigation.jsx'
 
 const user ={
   username:"",
-  role:"CUSTOMER",
-  isAuthenticated:true
+  role:"ALL",
+  isAuthenticated:false
 }
 
 const {role,isAuthenticated} = user;
